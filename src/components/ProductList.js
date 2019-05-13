@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import ProductListItem from "./ProductListItem";
 
 class ProductList extends Component {
   state = {
@@ -7,7 +8,6 @@ class ProductList extends Component {
   };
   handleOnClick = id => {
     const selectedProduct = this.state.products.find(item => item.id === id);
-    // console.log(selectedProduct);
     this.setState({
       selectedProduct
     });
@@ -35,7 +35,7 @@ class ProductList extends Component {
         }
       });
 
-      products.push({...product});
+      products.push({ ...product });
       this.setState({
         products
       });
@@ -47,10 +47,12 @@ class ProductList extends Component {
     return (
       <Fragment>
         <div>
-          {this.state.products.map(prod => (
-            <div key={prod.id} onClick={() => this.handleOnClick(prod.id)}>
-              {prod.name}: {prod.price}
-            </div>
+          {this.state.products.map(product => (
+            <ProductListItem
+              product={product}
+              key={product.id}
+              onClick={this.handleOnClick.bind(this, product.id)}
+            />
           ))}
         </div>
 
