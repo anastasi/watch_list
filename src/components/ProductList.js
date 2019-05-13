@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import ProductListItem from "./ProductListItem";
+import ProductDetails from "./ProductDetails";
 
 class ProductList extends Component {
   state = {
@@ -55,8 +56,7 @@ class ProductList extends Component {
             />
           ))}
         </div>
-
-        <div>{this.state.selectedProduct.name}</div>
+        <ProductDetails selectedProduct={this.state.selectedProduct} />
       </Fragment>
     );
   }
