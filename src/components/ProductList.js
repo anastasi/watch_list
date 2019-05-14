@@ -7,7 +7,7 @@ const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  margin: 0 10rem;
+  margin: 10rem 15rem;
 `;
 const List = styled.div`
   flex: 2;
@@ -18,6 +18,7 @@ class ProductList extends Component {
     products: [],
     selectedProduct: ""
   };
+  
 
   async componentDidMount() {
     let products = [];
@@ -32,13 +33,13 @@ class ProductList extends Component {
       const singleProduct = await productResponse.json();
       let product = { id: singleProduct.data.id };
 
-      console.log(singleProduct);
       singleProduct.data.elements.map(item => {
         if (item.name === "name") {
           product.name = item.value;
         }
         if (item.name === "price") {
           product.price = item.value.value;
+          product.current = item.value.unitAbbreviation;
         }
         if (item.name === "description") {
           product.description = item.value;
@@ -70,11 +71,10 @@ class ProductList extends Component {
         `https://dev-api.danielwellington.com/frontend/assets/${imageId}`
       );
       const json = await responseImage.json();
-      const image = json.data.uri
-      return image
+      const image = json.data.uri;
+      return image;
     }
     selectedProduct.image = await fetchImageApi();
-    
 
     this.setState({
       selectedProduct

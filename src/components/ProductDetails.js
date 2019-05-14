@@ -11,19 +11,29 @@ const SingleProduct = styled.div`
     font-family: DWFutura, sans-serif;
     font-weight: normal;
     margin-bottom: 2rem;
+    text-align: center;
   }
   img {
     display: block;
     margin: 0 auto;
-    width: 100px;
+    width: 20rem;
   }
-  p {
+  p,
+  span {
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.15px;
     font-family: DWFutura, sans-serif;
     font-weight: normal;
   }
+  span {
+    padding-right: 1.5rem;
+  }
+`;
+const Hr = styled.div`
+  border-bottom: 1px solid #8080802b;
+  width: 25rem;
+  padding-bottom: 0.8rem;
 `;
 
 const ProductDetails = ({ selectedProduct }) => {
@@ -31,8 +41,13 @@ const ProductDetails = ({ selectedProduct }) => {
     <SingleProduct>
       {selectedProduct.name && <h1>{selectedProduct.name}</h1>}
       {selectedProduct.image && <img src={selectedProduct.image} />}
-      {selectedProduct.description && <p>{selectedProduct.description}</p>}
-      {selectedProduct.price && <span>Price: {selectedProduct.price}</span>}
+      {selectedProduct.description && <p>{selectedProduct.description}<Hr /></p>}
+      
+      {selectedProduct.price && (
+        <span>
+          Price: {selectedProduct.price} {selectedProduct.current}
+        </span>
+      )}
       {selectedProduct.size && <span>Size: {selectedProduct.size}</span>}
       {selectedProduct.color && <span>Color: {selectedProduct.color}</span>}
     </SingleProduct>
