@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductListItem from "./ProductListItem";
 import ProductDetails from "./ProductDetails";
 import { fetchProducts } from "../api/fetchProducts";
+import Loading from "./Loading"
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -9,6 +10,7 @@ const Container = styled.div`
   flex-flow: row wrap;
   justify-content: space-around;
   margin: 0 15rem 3rem;
+  min-height: 60vh;
 `;
 const List = styled.div`
   flex: 2;
@@ -57,7 +59,7 @@ const ProductList = () => {
   return (
     <Container>
       {isLoadingProducts ? (
-        <p>Loading...</p>
+        <Loading/>
       ) : (
         <List>
           {products.map(product => (

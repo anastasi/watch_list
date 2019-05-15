@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Loading from "./Loading"
 
 const SingleProduct = styled.div`
   flex: 1;
@@ -42,7 +43,7 @@ const ProductDetails = ({ selectedProduct, isLoadingImage }) => {
     <SingleProduct>
       {selectedProduct.name && <h1>{selectedProduct.name}</h1>}
       {isLoadingImage ? (
-        <p>Loading...</p>
+        <Loading/>
       ) : (
         selectedProduct.image && (
           <img src={selectedProduct.image} alt={selectedProduct.name} />
