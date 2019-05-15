@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ProductList = styled.div`
   h1 {
@@ -10,7 +11,7 @@ const ProductList = styled.div`
     font-family: DWFutura, sans-serif;
     font-weight: normal;
     padding: 1rem 0;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
     span {
@@ -43,4 +44,11 @@ const ProductListItem = ({ product, onClick, selected }) => {
     </Fragment>
   );
 };
+
+ProductListItem.propTypes = {
+  product: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  selected: PropTypes.bool.isRequired
+};
+
 export default ProductListItem;

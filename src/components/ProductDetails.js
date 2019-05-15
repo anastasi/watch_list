@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SingleProduct = styled.div`
   flex: 1;
@@ -63,6 +64,11 @@ const ProductDetails = ({ selectedProduct, isLoadingImage }) => {
       {selectedProduct.color && <span>Color: {selectedProduct.color}</span>}
     </SingleProduct>
   );
+};
+
+ProductDetails.propTypes = {
+  selectedProduct: PropTypes.object.isRequired,
+  isLoadingImage: PropTypes.bool.isRequired
 };
 
 export default ProductDetails;
