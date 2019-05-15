@@ -36,13 +36,24 @@ const Hr = styled.div`
   padding-bottom: 0.8rem;
 `;
 
-const ProductDetails = ({ selectedProduct }) => {
+const ProductDetails = ({ selectedProduct, isLoadingImage }) => {
   return (
     <SingleProduct>
       {selectedProduct.name && <h1>{selectedProduct.name}</h1>}
-      {selectedProduct.image && <img src={selectedProduct.image} />}
-      {selectedProduct.description && <p>{selectedProduct.description}<Hr /></p>}
-      
+      {isLoadingImage ? (
+        <p>Loading...</p>
+      ) : (
+        selectedProduct.image && (
+          <img src={selectedProduct.image} alt={selectedProduct.name} />
+        )
+      )}
+      {selectedProduct.description && (
+        <div>
+          <p>{selectedProduct.description}</p>
+          <Hr />
+        </div>
+      )}
+
       {selectedProduct.price && (
         <span>
           Price: {selectedProduct.price} {selectedProduct.current}
