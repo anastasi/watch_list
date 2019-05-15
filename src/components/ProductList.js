@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import ProductListItem from "./ProductListItem";
 import ProductDetails from "./ProductDetails";
 import { fetchProducts } from "../api/fetchProducts";
@@ -21,11 +21,16 @@ const ProductList = () => {
   const [selectedProduct, setSelectedProduct] = useState({});
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [isLoadingImage, setIsLoadingImage] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const productsEffect = async () => {
-      const fetchedProducts = await fetchProducts();
-      setProducts(fetchedProducts);
+      try{
+        const fetchedProducts = await fetchProducts();
+        setProducts(fetchedProducts);
+      } catch(error){
+        setIsError(true)
+      }
       setIsLoadingProducts(false);
     };
     productsEffect();
@@ -61,16 +66,20 @@ const ProductList = () => {
       {isLoadingProducts ? (
         <Loading/>
       ) : (
-        <List>
-          {products.map(product => (
-            <ProductListItem
-              product={product}
-              key={product.id}
-              onClick={() => handleOnClick(product.id)}
-              selected={product.id === selectedProduct.id}
-            />
-          ))}
-        </List>
+        <Fragment>
+          {isError ? (<p>Something went wrong...</p>) : 
+          <List>
+            {products.map(product => (
+              <ProductListItem
+                product={product}
+                key={product.id}
+                onClick={() => handleOnClick(product.id)}
+                selected={product.id === selectedProduct.id}
+              />
+            ))}
+          </List>
+          }
+        </Fragment>
       )}
       {!isEmpty(selectedProduct) && (
         <ProductDetails
