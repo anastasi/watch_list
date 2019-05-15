@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Loading from "./Loading"
+import Loading from "./Loading";
 
 const SingleProduct = styled.div`
   flex: 1;
+  background-color: #f3f0f0;
+  padding: 1rem 2rem;
   h1 {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20.8px;
     letter-spacing: 3.2px;
     text-transform: uppercase;
@@ -20,6 +22,10 @@ const SingleProduct = styled.div`
     margin: 0 auto;
     width: 20rem;
   }
+  p {
+    border-bottom: 1px solid #8080802b;
+    padding-bottom: 0.8rem;
+  }
   p,
   span {
     font-size: 14px;
@@ -32,18 +38,13 @@ const SingleProduct = styled.div`
     padding-right: 1.5rem;
   }
 `;
-const Hr = styled.div`
-  border-bottom: 1px solid #8080802b;
-  width: 25rem;
-  padding-bottom: 0.8rem;
-`;
 
 const ProductDetails = ({ selectedProduct, isLoadingImage }) => {
   return (
     <SingleProduct>
       {selectedProduct.name && <h1>{selectedProduct.name}</h1>}
       {isLoadingImage ? (
-        <Loading/>
+        <Loading />
       ) : (
         selectedProduct.image && (
           <img src={selectedProduct.image} alt={selectedProduct.name} />
@@ -52,13 +53,11 @@ const ProductDetails = ({ selectedProduct, isLoadingImage }) => {
       {selectedProduct.description && (
         <div>
           <p>{selectedProduct.description}</p>
-          <Hr />
         </div>
       )}
-
       {selectedProduct.price && (
         <span>
-          Price: {selectedProduct.price} {selectedProduct.current}
+          Price: {selectedProduct.price} {selectedProduct.currency}
         </span>
       )}
       {selectedProduct.size && <span>Size: {selectedProduct.size}</span>}

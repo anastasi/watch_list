@@ -26,7 +26,7 @@ const reshape = (singleProduct, product) => {
     }
     if (item.name === "price") {
       product.price = item.value.value;
-      product.current = item.value.unitAbbreviation;
+      product.currency = item.value.unitAbbreviation;
     }
     if (item.name === "description") {
       product.description = item.value;
