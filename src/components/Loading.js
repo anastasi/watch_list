@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
 const LoadingContainer = styled.div`
-@-webkit-keyframes rotating {
+  @-webkit-keyframes rotating {
     from {
-        -webkit-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
     }
     to {
-        -webkit-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
     }
-}
+  }
 
-.preloader {
+  .preloader {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -23,16 +23,15 @@ const LoadingContainer = styled.div`
     border-left-color: transparent;
     border-radius: 50%;
     -webkit-animation: rotating 1s linear infinite;
-}
+  }
 `;
 
- const Loading = () => {
+const Loading = () => {
   return (
     <LoadingContainer>
-      <div className="preloader"></div>
+      <div className="preloader" />
     </LoadingContainer>
-  )
-}
+  );
+};
 
-
-export default Loading
+export default Loading;

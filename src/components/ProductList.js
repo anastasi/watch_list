@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import ProductListItem from "./ProductListItem";
 import ProductDetails from "./ProductDetails";
 import { fetchProducts } from "../api/fetchProducts";
-import Loading from "./Loading"
+import Loading from "./Loading";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -25,11 +25,11 @@ const ProductList = () => {
 
   useEffect(() => {
     const productsEffect = async () => {
-      try{
+      try {
         const fetchedProducts = await fetchProducts();
         setProducts(fetchedProducts);
-      } catch(error){
-        setIsError(true)
+      } catch (error) {
+        setIsError(true);
       }
       setIsLoadingProducts(false);
     };
@@ -53,32 +53,33 @@ const ProductList = () => {
     setIsLoadingImage(false);
   };
 
-  const isEmpty = (obj) => {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
+  const isEmpty = obj => {
+    for (var key in obj) {
+      if (obj.hasOwnProperty(key)) return false;
     }
     return true;
-}
+  };
 
   return (
     <Container>
       {isLoadingProducts ? (
-        <Loading/>
+        <Loading />
       ) : (
         <Fragment>
-          {isError ? (<p>Something went wrong...</p>) : 
-          <List>
-            {products.map(product => (
-              <ProductListItem
-                product={product}
-                key={product.id}
-                onClick={() => handleOnClick(product.id)}
-                selected={product.id === selectedProduct.id}
-              />
-            ))}
-          </List>
-          }
+          {isError ? (
+            <p>Something went wrong...</p>
+          ) : (
+            <List>
+              {products.map(product => (
+                <ProductListItem
+                  product={product}
+                  key={product.id}
+                  onClick={() => handleOnClick(product.id)}
+                  selected={product.id === selectedProduct.id}
+                />
+              ))}
+            </List>
+          )}
         </Fragment>
       )}
       {!isEmpty(selectedProduct) && (

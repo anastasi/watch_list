@@ -29,8 +29,8 @@ const ProductList = styled.div`
   .selected {
     color: gray;
   }
-  @media (max-width: 1199px){
-    h1{
+  @media (max-width: 1199px) {
+    h1 {
       margin: 0 auto;
       text-align: center;
     }
@@ -42,7 +42,7 @@ const ProductListItem = ({ product, onClick, selected }) => {
     <Fragment>
       <ProductList key={product.key} product={product} onClick={onClick}>
         <h1 className={selected ? "selected" : null}>
-          {product.name} <span>{product.price} {product.currency}</span>
+          {product.name} {product.price} {product.currency}
         </h1>
       </ProductList>
     </Fragment>

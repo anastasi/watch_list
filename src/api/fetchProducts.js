@@ -5,16 +5,15 @@ export const fetchProducts = async () => {
   const allProducts = await response.json();
   return await Promise.all(
     allProducts.data.map(async item => {
-        const productResponse = await fetch(
-          `https://dev-api.danielwellington.com/frontend/products/${item.id}`
-        );
-        const singleProduct = await productResponse.json();
+      const productResponse = await fetch(
+        `https://dev-api.danielwellington.com/frontend/products/${item.id}`
+      );
+      const singleProduct = await productResponse.json();
 
-        let product = { id: singleProduct.data.id };
+      let product = { id: singleProduct.data.id };
 
-        product = reshape(singleProduct, product);
-        return product;
-      
+      product = reshape(singleProduct, product);
+      return product;
     })
   );
 };

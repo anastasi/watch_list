@@ -7,7 +7,7 @@ const FooterContainer = styled.div`
   height: 5rem;
   background-color: white;
   bottom: 0;
-  p{
+  p {
     text-align: center;
   }
 `;
